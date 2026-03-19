@@ -14,6 +14,7 @@ sudo apt-get install -y \
     less \
     locales \
     unzip \
+    vim \
     zsh
 
 # ロケールとタイムゾーンの設定
@@ -53,4 +54,10 @@ ZSH_PATH="$(which zsh)"
 if [ -n "$ZSH_PATH" ] && [ "$SHELL" != "$ZSH_PATH" ]; then
     grep -qxF "$ZSH_PATH" /etc/shells || echo "$ZSH_PATH" | sudo tee -a /etc/shells
     sudo chsh -s "$ZSH_PATH" "$(whoami)"
+fi
+
+# ローカル拡張スクリプト（fork 先での個人設定用）
+if [ -f "${SCRIPT_DIR}/install.local.sh" ]; then
+    # shellcheck source=/dev/null
+    source "${SCRIPT_DIR}/install.local.sh"
 fi

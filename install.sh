@@ -34,6 +34,18 @@ eval "$(~/.homebrew/bin/brew shellenv)"
 # Brewfile から最新バージョンが必要なパッケージをインストール
 brew bundle --file="${SCRIPT_DIR}/Brewfile" || true
 
+# fzf のインストール（git clone）
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all --no-bash --no-fish --key-bindings --completion --no-update-rc
+
+# Neovim のインストール（GitHub Releases から取得）
+NVIM_VERSION="0.11.6"
+curl -Lo /tmp/nvim.tar.gz "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-linux-x86_64.tar.gz"
+sudo mkdir -p "/usr/local/bin/nvim-${NVIM_VERSION}"
+sudo tar xzf /tmp/nvim.tar.gz -C "/usr/local/bin/nvim-${NVIM_VERSION}" --strip-components=1
+sudo ln -sf "/usr/local/bin/nvim-${NVIM_VERSION}/bin/nvim" /usr/local/bin/nvim
+rm /tmp/nvim.tar.gz
+
 # Node.js LTS のインストール
 export N_PREFIX="$HOME/.n"
 export PATH="$N_PREFIX/bin:$PATH"

@@ -1,8 +1,6 @@
-brew "fzf"
 brew "gh"
 brew "jq"
 brew "n"
-brew "neovim"
 brew "ripgrep"
 brew "shellcheck"
 brew "tig"

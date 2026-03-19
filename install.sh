@@ -32,7 +32,7 @@ fi
 eval "$(~/.homebrew/bin/brew shellenv)"
 
 # Brewfile から最新バージョンが必要なパッケージをインストール
-brew bundle --file="${SCRIPT_DIR}/Brewfile"
+brew bundle --file="${SCRIPT_DIR}/Brewfile" || true
 
 # Node.js LTS のインストール
 export N_PREFIX="$HOME/.n"

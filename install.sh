@@ -13,6 +13,7 @@ sudo apt-get install -y \
     git \
     less \
     locales \
+    python3-venv \
     unzip \
     vim \
     zsh

@@ -23,4 +23,11 @@ nvim --headless \
     "+TSUpdateSync" \
     "+qa"
 
+# デフォルトシェルを zsh に変更
+ZSH_PATH="$(which zsh)"
+if [ -n "$ZSH_PATH" ] && [ "$SHELL" != "$ZSH_PATH" ]; then
+    grep -qxF "$ZSH_PATH" /etc/shells || echo "$ZSH_PATH" | sudo tee -a /etc/shells
+    sudo chsh -s "$ZSH_PATH" "$(whoami)"
+fi
+
 git config --global user.email "endo@ai-ms.com"
